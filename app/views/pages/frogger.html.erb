@@ -1,10 +1,235 @@
 <h1>frogger</h1>
+<button id="start">START</button>
 <div id="game">
-  <div class="road"></div>
-  <div class="road"></div>
-  <div class="road"></div>
-  <div class="road"></div>
-  <div class="road"></div>
-  <div class="road"></div>
-  <div class="car"></div>
+  <div class="road 6"></div>
+  <div class="road 5"></div>
+  <div class="road 4"></div>
+  <div class="road 3"></div>
+  <div class="road 2"></div>
+  <div class="road 1">
+
+  </div>
+
 </div>
+
+<script>
+$("#start").click(function(){
+  // *********************************FIRST ROAD****************************************
+  $(".1").prepend("<div class='car c1'></div>")
+
+  setTimeout(function() {
+    $(".1").prepend("<div class='car c1'></div>")
+
+  }, 2000);
+
+  setTimeout(function() {
+    $(".1").prepend("<div class='car c1'></div>")
+
+  }, 4000);
+
+  setTimeout(function() {
+    $(".1").prepend("<div class='car c1'></div>")
+
+  }, 5500);
+
+  setTimeout(function() {
+    $(".1").prepend("<div class='car c1'></div>")
+
+  }, 7500);
+
+  setTimeout(function() {
+    $(".1").prepend("<div class='car c1'></div>")
+
+  }, 9200);
+
+  setTimeout(function() {
+    $(".1").prepend("<div class='car c1'></div>")
+
+  }, 13800);
+
+  // *********************************SECOND ROAD****************************************
+  $(".2").prepend("<div class='car c2'></div>")
+
+  setTimeout(function() {
+    $(".2").prepend("<div class='car c2'></div>")
+
+  }, 2500);
+
+  setTimeout(function() {
+    $(".2").prepend("<div class='car c2'></div>")
+
+  }, 4000);
+
+  setTimeout(function() {
+    $(".2").prepend("<div class='car c2'></div>")
+
+  }, 8000);
+
+  setTimeout(function() {
+    $(".2").prepend("<div class='car c2'></div>")
+
+  }, 10000);
+
+  // *********************************THIRD ROAD****************************************
+  $(".3").prepend("<div class='car c3'></div>")
+
+  setTimeout(function() {
+    $(".3").prepend("<div class='car c3'></div>")
+
+  }, 2000);
+
+  setTimeout(function() {
+    $(".3").prepend("<div class='car c3'></div>")
+
+  }, 3100);
+
+  setTimeout(function() {
+    $(".3").prepend("<div class='car c3'></div>")
+
+  }, 4000);
+
+  setTimeout(function() {
+    $(".3").prepend("<div class='car c3'></div>")
+
+  }, 6000);
+
+  setTimeout(function() {
+    $(".3").prepend("<div class='car c3'></div>")
+
+  }, 7200);
+
+  // *********************************FORTH ROAD****************************************
+  $(".4").prepend("<div class='car c4'></div>")
+
+  setTimeout(function() {
+    $(".4").prepend("<div class='car c4'></div>")
+
+  }, 2000);
+
+  setTimeout(function() {
+    $(".4").prepend("<div class='car c4'></div>")
+
+  }, 3100);
+
+  setTimeout(function() {
+    $(".4").prepend("<div class='car c4'></div>")
+
+  }, 4400);
+
+  setTimeout(function() {
+    $(".4").prepend("<div class='car c4'></div>")
+
+  }, 5400);
+
+  setTimeout(function() {
+    $(".4").prepend("<div class='car c4'></div>")
+
+  }, 7000);
+
+  // *********************************FIFTH ROAD****************************************
+  $(".5").prepend("<div class='car c5'></div>")
+
+  setTimeout(function() {
+    $(".5").prepend("<div class='car c5'></div>")
+
+  }, 1700);
+
+  setTimeout(function() {
+    $(".5").prepend("<div class='car c5'></div>")
+
+  }, 3100);
+
+  setTimeout(function() {
+    $(".5").prepend("<div class='car c5'></div>")
+
+  }, 4400);
+
+  setTimeout(function() {
+    $(".5").prepend("<div class='car c5'></div>")
+
+  }, 5400);
+
+  setTimeout(function() {
+    $(".5").prepend("<div class='car c5'></div>")
+
+  }, 7000);
+
+  setTimeout(function() {
+    $(".5").prepend("<div class='car c5'></div>")
+
+  }, 9000);
+
+  // *********************************SIXTH ROAD****************************************
+  $(".6").prepend("<div class='car c6'></div>")
+
+  setTimeout(function() {
+    $(".6").prepend("<div class='car c6'></div>")
+
+  }, 1000);
+
+
+  setTimeout(function() {
+    $(".6").prepend("<div class='car c6'></div>")
+
+  }, 2500);
+
+  setTimeout(function() {
+    $(".6").prepend("<div class='car c6'></div>")
+
+  }, 3000);
+
+  setTimeout(function() {
+    $(".6").prepend("<div class='car c6'></div>")
+
+  }, 4000);
+  setTimeout(function() {
+    $(".6").prepend("<div class='car c6'></div>")
+
+  }, 5000);
+
+  setTimeout(function() {
+    $(".6").prepend("<div class='car c6'></div>")
+
+  }, 5900);
+
+});
+
+
+
+window.setInterval(function(){
+  $(".c1").animate({
+        marginLeft: "+=1px",
+    }, 10 );
+
+  $(".c2").animate({
+        marginLeft: "+=2px",
+    }, 10 );
+
+  $(".c3").animate({
+        marginLeft: "+=1.5px",
+    }, 10 );
+  $(".c4").animate({
+        marginLeft: "+=1.7px",
+    }, 10 );
+  $(".c5").animate({
+        marginLeft: "+=1.2px",
+    }, 10 );
+  $(".c6").animate({
+        marginLeft: "+=2.6px",
+    }, 10 );
+}, 10);
+
+
+
+window.setInterval(function(){
+  $('.car').each(function() {
+    if ($(this).offset().left>1303){
+      var p=$(this).parent()
+      var classes=$(this).attr("class")
+      $(this).remove();
+      p.prepend("<div class='"+classes+"'></div>");
+      console.log(classes.type);
+    };
+  });
+}, 1);
+</script>

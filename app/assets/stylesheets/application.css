@@ -22,6 +22,7 @@
   margin-right: auto;
   padding-top: 20px;
   background-image: url("grass.png");
+  overflow-x: hidden;
 }
 .road{
   width: 100%;
@@ -38,4 +39,7 @@
   background-image: url("car.png");
   background-position: center;
   background-size: 50px 25px;
+  margin-top: 10px;
+  display: inline-block;
+  position: absolute;
 }

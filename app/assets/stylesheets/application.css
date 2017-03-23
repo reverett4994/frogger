@@ -16,7 +16,7 @@
 
 #game{
   width: 1000px;
-  height: 500px;
+  height: 650px;
   border: 1px solid black;
   margin-left: auto;
   margin-right: auto;
@@ -28,13 +28,13 @@
   width: 100%;
   border: 1px solid black;
   height: 50px;
-  margin-top: 15px;
+  margin-top: 45px;
   background-image: url("road.jpg");
   background-position: center;
   background-size: 100px 50px;
 }
 .car{
-  width: 50px;
+  width: 45px;
   height: 25px;
   background-image: url("car.png");
   background-position: center;
@@ -42,4 +42,16 @@
   margin-top: 10px;
   display: inline-block;
   position: absolute;
+}
+#doggie{
+  width: 22px;
+  height: 40px;
+  background-image: url("dog-back.png");
+  background-position: center;
+  background-size: 22px 40px;
+  margin-top: 10px;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+
 }

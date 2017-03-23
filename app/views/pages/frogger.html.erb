@@ -6,9 +6,8 @@
   <div class="road 4"></div>
   <div class="road 3"></div>
   <div class="road 2"></div>
-  <div class="road 1">
-
-  </div>
+  <div class="road 1"></div>
+  <div id="doggie"></div>
 
 </div>
 
@@ -232,4 +231,27 @@ window.setInterval(function(){
     };
   });
 }, 1);
+
+$(document).keydown(function(e) {
+    switch(e.which) {
+        case 37: // left
+        $("#doggie").animate({left:'-=5px'},1)
+        break;
+
+        case 38: // up
+        $("#doggie").animate({bottom:'+=5px'},1)
+        break;
+
+        case 39: // right
+        $("#doggie").animate({left:'+=5px'},1)
+        break;
+
+        case 40: // down
+        $("#doggie").animate({bottom:'-=5px'},1)
+        break;
+
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+});
 </script>

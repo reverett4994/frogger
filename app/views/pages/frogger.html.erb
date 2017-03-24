@@ -1,7 +1,6 @@
 <h1>frogger</h1>
 <button id="start">START</button>
 <div id="game">
-  <div class="road 6"></div>
   <div class="road 5"></div>
   <div class="road 4"></div>
   <div class="road 3"></div>
@@ -194,30 +193,31 @@ $("#start").click(function(){
 });
 
 
-
+// *********************************MOVES CARS ****************************************
 window.setInterval(function(){
   $(".c1").animate({
-        marginLeft: "+=1px",
+        left: "+=1px",
     }, 10 );
 
   $(".c2").animate({
-        marginLeft: "+=2px",
+        left: "+=2px",
     }, 10 );
 
   $(".c3").animate({
-        marginLeft: "+=1.5px",
+        left: "+=1.5px",
     }, 10 );
   $(".c4").animate({
-        marginLeft: "+=1.7px",
+        left: "+=1.7px",
     }, 10 );
   $(".c5").animate({
-        marginLeft: "+=1.2px",
+        left: "+=1.2px",
     }, 10 );
   $(".c6").animate({
-        marginLeft: "+=2.6px",
+        left: "+=2.6px",
     }, 10 );
 }, 10);
 
+// *********************************RESETS CARS ****************************************
 
 
 window.setInterval(function(){
@@ -227,31 +227,76 @@ window.setInterval(function(){
       var classes=$(this).attr("class")
       $(this).remove();
       p.prepend("<div class='"+classes+"'></div>");
-      console.log(classes.type);
     };
   });
 }, 1);
+
+// *********************************MOVES DOG ****************************************
 
 $(document).keydown(function(e) {
     switch(e.which) {
         case 37: // left
         $("#doggie").animate({left:'-=5px'},1)
+        $('#doggie').css("background-image", "url('/assets/dog-left.png')");        
         break;
 
         case 38: // up
         $("#doggie").animate({bottom:'+=5px'},1)
+        $('#doggie').css("background-image", "url('/assets/dog-back.png')");
         break;
 
         case 39: // right
         $("#doggie").animate({left:'+=5px'},1)
+        $('#doggie').css("background-image", "url('/assets/dog-right.png')");
         break;
 
         case 40: // down
         $("#doggie").animate({bottom:'-=5px'},1)
+        $('#doggie').css("background-image", "url('/assets/dog-front.png')");
         break;
 
         default: return; // exit this handler for other keys
     }
     e.preventDefault(); // prevent the default action (scroll / move caret)
 });
+
+
+
+// *********************************TEST FOR COLLISIONS****************************************
+
+var lose=window.setInterval(function(){
+  $('.car').each(function() {
+
+    var x1 = $(this).offset().left;
+    var y1 = $(this).offset().top;
+    var h1 = $(this).outerHeight(true);
+    var w1 = $(this).outerWidth(true);
+    var b1 = y1 + h1 ;
+    var r1 = x1 + w1 ;
+    var x2 = $("#doggie").offset().left;
+    var y2 = $("#doggie").offset().top+5;
+    var h2 = $("#doggie").outerHeight(true)-10;
+    var w2 = $("#doggie").outerWidth(true);
+    var b2 = y2 + h2;
+    var r2 = x2 + w2;
+    if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2){
+
+    }else{
+        $(this).css({"border-color":"blue"})
+        sweetAlert("YOU LOSE!!!","You Managed to Lose in [placeholder]","error");
+         window.clearInterval(lose);
+    };
+  });
+}, 10);
+
+// *********************************TEST FOR WINNING****************************************
+
+var win= window.setInterval(function(){
+    if ($("#doggie").offset().top<127){
+      sweetAlert("YOU WIN!!!","Your Time Was [placeholder]","success");
+       window.clearInterval(win);
+    };
+}, 1);
+
+
 </script>

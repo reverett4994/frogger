@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require sweetalert
+ *= require jquery.countdown
  *= require_self
  */
 
@@ -45,7 +46,7 @@
   position: absolute;
   border: 1px solid red;
 }
-#doggie{
+.doggie{
   width: 22px;
   height: 40px;
   background-image: url("dog-back.png");

@@ -10,12 +10,23 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+    font-family: 'Permanent Marker', cursive;
+
  *= require_tree .
  *= require sweetalert
  *= require jquery.countdown
  *= require_self
  */
-
+ body{
+   width: 100%;
+   margin: 0;
+   padding: 0;
+ }
+h1{
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  font-size: 50px;
+}
 #game{
   width: 1000px;
   height: 650px;
@@ -44,7 +55,7 @@
   margin-top: 10px;
   display: inline-block;
   position: absolute;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 .doggie{
   width: 22px;
@@ -56,5 +67,54 @@
   display: inline-block;
   position: absolute;
   left: 50%;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
+/************************************** NAV BAR**************************************/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Baloo Bhaina', cursive;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+.active {
+    background-color: #4CAF50;
+}
+
+/************************************** HIGHSCORES TABLE**************************************/
+h2{
+  font-family: 'Baloo Bhaina', cursive;
+  text-align: center;
+}
+table {
+  font-family: 'Baloo Bhaina', cursive;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover{background-color:#f5f5f5}

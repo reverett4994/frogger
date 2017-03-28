@@ -1,0 +1,27 @@
+<ul>
+  <li><a href="/pages/frogger">Frogger</a></li>
+  <li><a class="active" href="/highscores">Highscores</a></li>
+</ul>
+<div class="container">
+  <h1>High Scores</h1>
+  <h2>This is all the scores listed best to worst according to time taken:</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>User</th>
+        <th>Time (seconds)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @highscores.each do |highscore| %>
+        <tr>
+          <td><%=@counter%></td>
+          <td><%=highscore.user%></td>
+          <td><%=highscore.time%></td>
+        </tr>
+        <%@counter+=1%>
+      <%end%>
+    </tbody>
+  </table>
+</div>

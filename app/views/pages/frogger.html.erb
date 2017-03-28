@@ -1,5 +1,8 @@
-<h1>frogger</h1>
-<button id="start">START</button>
+<ul>
+  <li><a class="active"href="/pages/frogger">Frogger</a></li>
+  <li><a href="/highscores">Highscores</a></li>
+</ul>
+<h1>frogger (or dogger?)</h1>
 <div id="game">
   <div class="road 5"></div>
   <div class="road 4"></div>
@@ -8,9 +11,16 @@
   <div class="road 1"></div>
   <div id="doggie" class="doggie"></div>
 </div>
-
+<div class="btn_div">
+<button id="start" data-label="START">STARt</button>
+</div>
 <script>
+$("#start").removeClass("loading")
+$("#start").removeAttr('disabled')
+
 $("#start").click(function(){
+  $("#start").addClass("loading")
+  $("#start").attr('disabled','disabled')
 
   // *********************************GET START TIME****************************************
   $.ajax({
@@ -256,8 +266,12 @@ $("#start").click(function(){
   $(document).keydown(function(e) {
       switch(e.which) {
           case 37: // left
-          $("#doggie").animate({left:'-=5px'},1)
-          $('#doggie').css("background-image", "url('/assets/dog-left.png')");
+          if ($("#doggie").offset().left<365){
+          }else{
+            $("#doggie").animate({left:'-=5px'},1)
+            $('#doggie').css("background-image", "url('/assets/dog-left.png')");
+          }
+
           break;
 
           case 38: // up
@@ -266,13 +280,21 @@ $("#start").click(function(){
           break;
 
           case 39: // right
-          $("#doggie").animate({left:'+=5px'},1)
-          $('#doggie').css("background-image", "url('/assets/dog-right.png')");
+          if ($("#doggie").offset().left>1320){
+          }else{
+            $("#doggie").animate({left:'+=5px'},1)
+            $('#doggie').css("background-image", "url('/assets/dog-right.png')");
+          }
+
           break;
 
           case 40: // down
-          $("#doggie").animate({bottom:'-=5px'},1)
-          $('#doggie').css("background-image", "url('/assets/dog-front.png')");
+          if ($("#doggie").offset().top>800){
+          }else{
+            $("#doggie").animate({bottom:'-=5px'},1)
+            $('#doggie').css("background-image", "url('/assets/dog-front.png')");
+          }
+
           break;
 
           default: return; // exit this handler for other keys
@@ -325,8 +347,28 @@ $("#start").click(function(){
           total_time = Math.abs(total_time)
           total_time /= Math.pow(10, 3);
           total_time= total_time.toFixed(3);
+          $("#start").removeClass("loading")
+          $("#start").removeAttr('disabled')
           console.log(total_time);
-          sweetAlert("YOU LOSE!!!","You Managed to Lose in "+total_time+" seconds","error");
+          swal({
+            title: "YOU LOSE!!!",
+            text: "You Managed to Lose in "+total_time+" seconds",
+            type: "error",
+            showCancelButton: true,
+            confirmButtonColor: "#33cc33",
+            confirmButtonText: "Try Again?",
+            cancelButtonText: "See Highscores",
+            allowEscapeKey:false,
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+          function(isConfirm){
+            if (isConfirm) {
+              window.location.assign("/pages/frogger")
+            } else {
+          	   window.location.assign("/highscores")
+            }
+          });
            window.clearInterval(lose);
       };
     });
@@ -337,7 +379,7 @@ $("#start").click(function(){
   // *********************************TEST FOR WINNING****************************************
 
   var win= window.setInterval(function(){
-      if ($("#doggie").offset().top<127){
+      if ($("#doggie").offset().top<222){
         window.clearInterval(move_cars);
         $("#doggie").removeAttr("id");
         // *********************************GET END TIME****************************************
@@ -360,14 +402,48 @@ $("#start").click(function(){
         total_time = Math.abs(total_time)
         total_time /= Math.pow(10, 3);
         total_time= total_time.toFixed(3);
+        $("#start").removeClass("loading")
+        $("#start").removeAttr('disabled')
         console.log(total_time);
-        sweetAlert("YOU WIN!!!","Your Time Was "+total_time+" seconds","success");
+        // sweetAlert("YOU WIN!!!","Your Time Was "+total_time+" seconds","success");
          window.clearInterval(win);
+         swal({
+          title: "Congratulations You Finished! Your Score is "+total_time+" Seconds",
+          text: "Enter Your Name Below To Submit Highscore:",
+          type: "input",
+          showCancelButton: false,
+          closeOnConfirm: false,
+          animation: "slide-from-top",
+          inputPlaceholder: "Your Name"
+        },
+        function(inputValue){
+          if (inputValue === false) return false;
+
+          if (inputValue === "") {
+            swal.showInputError("You need to write something!");
+            return false
+          }
+
+          $.ajax({
+            type: "POST",
+            url: "/highscores",
+            dataType:"json",
+            data: { highscore: { user: inputValue, time: total_time } },
+            success:function(data) {
+              console.log("yay");
+              window.location.assign("/highscores")
+              return false;
+            },
+            error:function(data) {
+              console.log(data);
+              return false;
+            }
+          });
+        });
       };
   }, 1);
 
 });
-
 
 
 

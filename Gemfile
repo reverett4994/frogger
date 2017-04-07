@@ -52,3 +52,6 @@ gem 'sweetalert-rails'
 
 
 gem 'jquery-countdown-rails'
+
+gem 'pg'
+gem 'rails_12factor', group: :production
